@@ -48,12 +48,20 @@ The following diagram depicts a forward pass of the model.
 
 ### Train and Evaluation Code
 
-This project utilizes the existing [training](link) and [evalutation](link) script in the Pytorch Image Model repository. It supports distributed training and evaluation, and the hyperparameters can be set in the execution commands.
+This project utilizes the existing [training](https://github.com/JasmineLi-805/pytorch-image-models/blob/master/train.py) and [evalutation](https://github.com/JasmineLi-805/pytorch-image-models/blob/master/validate.py) script in the Pytorch Image Model repository. It supports distributed training and evaluation, and the hyperparameters can be set in the execution commands.
 
 
 ## Results
 
-In this project, I decided to do a comparison study on how the size 
+In this project, I decided to do a comparison study on how the size of the downsized image affect the classification accuracy. The trainings are fixed to 20 epochs, learning rate of 0.05, and decay rate of 0.1. The train, validation, and test dataset is split as in the imagenette repository. Since the imagenette dataset is rather small, this project uses the top 1 accuracy on the test dataset for the evaluations.
+
+I trained and evaluated three different image sizes for regional proposal: 1x32x32, 1x64x64, 1x128x128, and 1x224x224. The following are the validation accuracy of each size over the 20 epochs:
+![size=32^2](ds32.png)
+![size=64^2](ds64.png)
+![size=128^2](ds128.png)
+![size=224^2](ds224.png) 
+
+
 
 How did you evaluate your approach? How well did you do? What are you comparing to? Maybe you want ablation studies or comparisons of different methods.
 
