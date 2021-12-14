@@ -1,15 +1,17 @@
-# Project: Use Saliency Map for Region Proposal
+# Project: Using "Salience Map" for Region Proposal
 
+## Github Repository
 The project is implemented in a forked [Pytorch Image Model repository](https://github.com/JasmineLi-805/pytorch-image-models).
 Since this README is specifically for the course project, I have created a separate repository for the project related portion.
 
+## Video
 VIDEO GOES HERE (probably): Record a 2-3 minute long video presenting your work. One option - take all your figures/example images/charts that you made for your website and put them in a slide deck, then record the video over zoom or some other recording platform (screen record using Quicktime on Mac OS works well). The video doesn't have to be particularly well produced or anything.
 
 ## Introduction
 
 As introduced in the lectures, image classification networks such as R-CNN and YOLO have a region proposal phase that generates thousands of bounding boxes for later process. However, considering that background often consists of a great portion of an image, many of the bounding boxes are not useful in the classification task, thus there is inefficiency in this method.
 
-In a paper by Yohanandan et al. (mentioned below), the authors suggest that locating the objects of interest could be done with a rather small network and low resolution input. This project would try to utilize the findings of this paper to train an image classification model. To do so, I will replace the region proposal phase with a convolutional “salience map” generation module, then attach it to a recurrent-based model, and train the classifier end-to-end.
+In a paper by Yohanandan et al. (mentioned below), the authors suggest that locating the objects of interest could be done with a rather small network and low resolution input. This project would try to utilize the findings of this paper to train an image classification model that alleviates the computation costs on region proposal by using small networks and images. To do so, I will replace the region proposal phase with a light-weight convolutional “salience map” generation module, then attach it to a recurrent-based model, and train the classifier end-to-end.
 
 The model would be evaluated on the accuracy of the classification, and would be compared on the different image sizes used for the region proposal module.
 
@@ -62,7 +64,7 @@ I trained and evaluated three different image sizes for regional proposal: 1x32x
 ![size=64^2](ds64.png)
 ![size=128^2](ds128.png)
 ![size=224^2](ds224.png) 
-Of all the different image sizes, size 64^2 received the highest accuracy of 48.24% after 20 epochs, and size 32^2 received the lowest accuracy of 47.81%. However, that is not a significant difference. Thus, it seems like, at least for few number of epochs, the image size used for region proposal does not significantly affect the classfication accuracy.
+Of all the different image sizes, size 64^2 received the highest accuracy of 48.24% after 20 epochs, and size 32^2 received the lowest accuracy of 47.81%. That is not a significant difference. Thus, it seems like, at least for few number of epochs, the image size used for region proposal does not significantly affect the classfication accuracy.
 ![all sizes](all.png)
 Similar patterns can be seen from the diagram above where all the learning curves of different image sizes are plotted in one graph.
 
