@@ -5,7 +5,7 @@ The project is implemented in a forked [Pytorch Image Model repository](https://
 Since this README is specifically for the course project, I have created a separate repository for the project related portion.
 
 ## Video
-VIDEO GOES HERE (probably): Record a 2-3 minute long video presenting your work. One option - take all your figures/example images/charts that you made for your website and put them in a slide deck, then record the video over zoom or some other recording platform (screen record using Quicktime on Mac OS works well). The video doesn't have to be particularly well produced or anything.
+![project video](https://github.com/JasmineLi-805/cse490-DeepLearning-Project/blob/master/Final%20Presentation.mov)
 
 ## Introduction
 
