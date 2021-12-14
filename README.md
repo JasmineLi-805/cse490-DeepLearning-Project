@@ -9,7 +9,9 @@ VIDEO GOES HERE (probably): Record a 2-3 minute long video presenting your work.
 
 As introduced in the lectures, image classification networks such as R-CNN and YOLO have a region proposal phase that generates thousands of bounding boxes for later process. However, considering that background often consists of a great portion of an image, many of the bounding boxes are not useful in the classification task, thus there is inefficiency in this method.
 
-In a paper by Yohanandan et al. (mentioned below), the authors suggest that locating the objects of interest could be done with a rather small network and low resolution input. This project would utilize the findings of this paper and try to replace the region proposal phase with a “salience map” generation, and train an image classification model end-to-end.
+In a paper by Yohanandan et al. (mentioned below), the authors suggest that locating the objects of interest could be done with a rather small network and low resolution input. This project would try to utilize the findings of this paper to train an image classification model. To do so, I will replace the region proposal phase with a convolutional “salience map” generation module, then attach it to a recurrent-based model, and train the classifier end-to-end.
+
+The model would be evaluated on the accuracy of the classification, and would be compared on the different image sizes used for the region proposal module.
 
 
 ## Related Work
@@ -60,13 +62,15 @@ I trained and evaluated three different image sizes for regional proposal: 1x32x
 ![size=64^2](ds64.png)
 ![size=128^2](ds128.png)
 ![size=224^2](ds224.png) 
+Of all the different image sizes, size 64^2 received the highest accuracy of 48.24% after 20 epochs, and size 32^2 received the lowest accuracy of 47.81%. However, that is not a significant difference. Thus, it seems like, at least for few number of epochs, the image size used for region proposal does not significantly affect the classfication accuracy.
+![all sizes](all.png)
+Similar patterns can be seen from the diagram above where all the learning curves of different image sizes are plotted in one graph.
 
-
-
-How did you evaluate your approach? How well did you do? What are you comparing to? Maybe you want ablation studies or comparisons of different methods.
-
-You may want some qualitative results and quantitative results. Example images/text/whatever are good. Charts are also good. Maybe loss curves or AUC charts. Whatever makes sense for your evaluation.
 
 ## Discussion
 
-You can talk about your results and the stuff you've learned here if you want. Or discuss other things. Really whatever you want, it's your project.
+By seeing the results, it seems like the current model does not significantly increase the classification accuracy comparing to a ResNet18-only model trained on the same dataset and same number of epochs. In this section, I'd like to mention a few future improvements for the current setup.
+- Increase the number of training epochs: 20-epochs is too few for the model to be fully trained on this dataset, so increasing the number of epochs might reveal a more significant difference between the diffent setups.
+- Add more ways of cropping the original image: The FiveCrop method does not provide the best variation needed for region proposal, adding more ways, such as taking vertical or horizontal sections of the image, might help the model to locate areas of interest.
+- Add the original image into the stack of inputs: It is possible that the entire image is necessary for the classification task, and any type of cropping would negatively impact the classification accuracy.
+- Increase the training epochs: Due to the limited computing resource and time, this project was only able to train on very few number of epochs. There seems to be space for improvements in the accuracy diagram. Thus I would consider adding more epochs for a more thorough analysis.
